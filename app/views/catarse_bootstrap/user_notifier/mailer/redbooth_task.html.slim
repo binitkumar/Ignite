@@ -1,0 +1,38 @@
+- project = @notification.project
+- project_link = project_by_slug_url(permalink: project.permalink)
+- bank_account = project.user.bank_account
+|#diegoreeberg
+br/
+= project.name
+br/
+= link_to project_link, project_link
+br/
+| Arrecadado:
+= project.display_pledged
+br/
+| Usuario moip:
+= project.user.moip_login
+br/
+| CPF/CNPJ do realizador:
+= project.user.cpf
+br/
+| Data de expiração:
+= project.display_expires_at
+br/
+| Telefone:
+= project.user.phone_number
+br/
+| Usando pagar.me?
+= (project.using_pagarme? ? 'Sim' : 'Não')
+br/
+| Dados Bancarios:
+br/
+| Banco: #{bank_account.try(:name)}
+br/
+| Agência: #{bank_account.try(:agency)}- #{bank_account.try(:agency_digit)}
+br/
+| Conta: #{bank_account.try(:account)} - #{bank_account.try(:account_digit)}
+br/
+| Nome do titular: #{bank_account.try(:user_name)}
+br/
+| CPF: #{bank_account.try(:user_document)}
